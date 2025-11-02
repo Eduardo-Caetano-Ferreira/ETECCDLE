@@ -9,7 +9,7 @@ body {
     color: #333;
 }
 h1 {
-    color: #007bff;
+    color: red;
     margin-bottom: 20px;
 }
 #game-container {
@@ -32,7 +32,7 @@ h1 {
 }
 button {
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: red;
     color: white;
     border: none;
     border-radius: 4px;
