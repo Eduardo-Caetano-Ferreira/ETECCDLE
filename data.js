@@ -312,5 +312,13 @@ const JOGOS = [
         "local_escritorio": "Todos",
         "tempo_empresa": 2021
     },
+    {
+        "id": 40,
+        "nome": "Isabela de Toledo Costa",
+        "cargo": "Retenção",
+        "area": "Retenção",
+        "local_escritorio": "Call Center",
+        "tempo_empresa": 2023
+    },
     
 ];
