@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ColaboraDle - Adivinhe o Colega</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🤝 ColaboraDle - Quem é o Colega do Dia?</h1>
+    
+    <div id="game-container">
+        <div class="palpite-linha header">
+            <span class="nome-palpite">Tentativa</span>
+            <span class="dica">Cargo</span>
+            <span class="dica">Área</span>
+            <span class="dica">Local</span>
+            <span class="dica">Admissão</span> </div>
+
+        <input type="text" id="palpite-input" placeholder="Digite o nome do colaborador">
+        <div id="sugestoes-container">
+            </div>
+        <button onclick="fazerPalpite()">Adivinhar</button>
+        
+        <div id="dicas-container">
+            </div>
+        
+        <div id="resultado-final" class="message"></div>
+    </div>
+
+    <script src="data.js"></script> 
+    <script src="script.js"></script>
+</body>
+</html>

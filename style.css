@@ -1,0 +1,144 @@
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+}
+#game-container {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Entrada e Botão */
+#palpite-input {
+    padding: 10px;
+    width: calc(80% - 10px);
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Linhas de Dicas */
+.palpite-linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 5px;
+    margin-top: 5px;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+.palpite-linha.header {
+    font-weight: bold;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 10px;
+}
+
+/* Coluna de Dicas */
+.dica {
+    flex: 1;
+    display: flex; /* Para centralizar o conteúdo */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 8px 5px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    min-width: 100px; 
+    box-sizing: border-box;
+}
+.palpite-linha.header .dica {
+    background: none;
+    color: #333;
+}
+
+.nome-palpite {
+    flex-basis: 200px;
+    text-align: left;
+    font-weight: bold;
+    color: #333;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+}
+
+/* Cores do JogoDle */
+.verde {
+    background-color: #4CAF50; /* Acerto total */
+}
+
+.amarelo {
+    background-color: #FFC107; /* Acerto parcial/próximo */
+    color: #333; 
+}
+
+.cinza {
+    background-color: #757575; /* Erro total */
+}
+
+/* Mensagem Final */
+.message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 1.1em;
+}
+.message.verde {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* --- Estilos de Autocompletar (NOVO) --- */
+#sugestoes-container {
+    position: relative; /* Ou absolute dependendo do seu layout, mas relative aqui funciona */
+    z-index: 10;
+    width: 80%; /* Para alinhar com o input */
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sugestao-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+.sugestao-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Ajusta o layout do input e botão para que fiquem alinhados */
+#palpite-input {
+    margin-bottom: 5px; /* Reduz o espaço para encaixar o container */
+}
