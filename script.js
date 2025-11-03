@@ -1,31 +1,25 @@
-// O array JOGOS é carregado do data.js
+// O array JOGOS (seus colaboradores) é carregado do data.js
 
-// --- Lógica de Seleção Aleatória Consistente (MANTIDA) ---
+// --- Lógica de Seleção Sequencial Diária (CORRIGIDO) ---
 
 const DATA_INICIO = new Date('2025-11-01');
 
-function seedRNG(seed) {
-    let s = seed % 2147483647; 
-    if (s <= 0) s += 2147483646;
-    return function() {
-        s = (s * 16807) % 2147483647;
-        return (s - 1) / 2147483646;
-    };
-}
-
-function calcularSementeDoDia() {
-    const hoje = new Date();
-    const dataString = hoje.getFullYear().toString() + 
-                       (hoje.getMonth() + 1).toString().padStart(2, '0') + 
-                       hoje.getDate().toString().padStart(2, '0');
-    return parseInt(dataString);
-}
+// Funções seedRNG e calcularSementeDoDia foram removidas.
 
 function getJogoDoDiaIndex() {
-    const semente = calcularSementeDoDia();
-    const random = seedRNG(semente); 
-    const indiceAleatorio = Math.floor(random() * JOGOS.length);
-    return indiceAleatorio;
+    const hoje = new Date();
+    // Limpa o tempo para garantir que a contagem seja apenas por dia
+    const hojeLimpo = new Date(hoje.getFullYear(), hoje.getMonth(), hoje.getDate());
+    
+    // Limpa o tempo da data de início também
+    const inicioLimpo = new Date(DATA_INICIO.getFullYear(), DATA_INICIO.getMonth(), DATA_INICIO.getDate());
+
+    const diferencaEmMilissegundos = hojeLimpo - inicioLimpo;
+    // Divide por 1000ms * 60s * 60m * 24h para obter a diferença em dias
+    const diferencaEmDias = Math.floor(diferencaEmMilissegundos / (1000 * 60 * 60 * 24));
+    
+    // O operador % garante que o índice volte ao início da lista de pessoas
+    return diferencaEmDias % JOGOS.length; 
 }
 
 const JOGO_DO_DIA = JOGOS[getJogoDoDiaIndex()]; 
@@ -37,7 +31,7 @@ const inputElement = document.getElementById('palpite-input');
 const sugestoesContainer = document.getElementById('sugestoes-container');
 
 
-// --- FUNÇÕES DE LÓGICA DE COMPARAÇÃO (MANTIDAS) ---
+// --- FUNÇÕES DE LÓGICA DE COMPARAÇÃO ---
 
 // Lógica de Ano de Admissão (Numérica)
 function verificarAno(anoPalpite, anoCorreto) {
@@ -45,10 +39,9 @@ function verificarAno(anoPalpite, anoCorreto) {
         return { cor: 'verde', dica: anoPalpite };
     }
     const diferenca = Math.abs(anoPalpite - anoCorreto);
-    if (diferenca <= 2) { // Margem de 2 anos para Amarelo
+    if (diferenca <= 2) { 
         return { cor: 'amarelo', dica: anoPalpite }; 
     } else {
-        // Seta: ↑ O correto é MAIS RECENTE / ↓ O correto é MAIS ANTIGO
         let seta = anoPalpite < anoCorreto ? '↑' : '↓'; 
         return { cor: 'cinza', dica: `${anoPalpite} ${seta}` };
     }
@@ -63,7 +56,7 @@ function verificarTextoExato(palpite, correto) {
 }
 
 
-// --- FUNÇÕES DE AUTOCOMPLETAR (MANTIDAS) ---
+// --- FUNÇÕES DE AUTOCOMPLETAR ---
 
 function atualizarSugestoes() {
     const termo = inputElement.value.trim().toLowerCase();
@@ -89,7 +82,7 @@ function atualizarSugestoes() {
 inputElement.addEventListener('input', atualizarSugestoes);
 
 
-// --- FUNÇÃO PRINCIPAL DE PALPITE E RENDERIZAÇÃO (ATUALIZADA) ---
+// --- FUNÇÃO PRINCIPAL DE PALPITE E RENDERIZAÇÃO ---
 
 function fazerPalpite() {
     if (jogoAcertado) return;
@@ -148,7 +141,6 @@ function fazerPalpite() {
     inputElement.value = ''; 
 }
 
-// FUNÇÃO ALTERADA: Inclui o Ano de Admissão (Mantida da última alteração)
 function renderizarDicas(palpite, resultado) {
     const dicasContainer = document.getElementById('dicas-container');
     
